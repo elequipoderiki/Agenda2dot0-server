@@ -1,6 +1,5 @@
 const express =  require('express')
 
-const routesMascotas = require('./routes/rMascota')
 const routesTasks = require('./routes/rTask');
 const connectDB = require('./config/db');
 
@@ -15,19 +14,9 @@ require('dotenv').config();
 connectDB();
 const port =  process.env.PORT || 3001;
 
-// configuracion de vista 
-app.set('view engine', 'ejs')
-app.set('views' , __dirname +'/views')
-// --------------
-
 app.use(express.static(__dirname + "/public"))
 
-// app.use('/', require('./routes/rutas-web'))
-
-app.use('/', routesTasks);
-
-app.use('/mascotas',routesMascotas);
-
+app.use('/tasks', routesTasks);
 
 app.use((req, res, next) => {
     res.status(404).sendFile(__dirname + '/public/404.html')
