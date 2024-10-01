@@ -3,5 +3,5 @@
 
 ### Crear servidor
 - clonar repositorio y ejecutar npm install
-- luego de que se haya terminado de ejecutar npm init, que agrega la carpeta node modules al proyecto, ejecutar npm start
+- luego de que se haya terminado de ejecutar npm install, que agrega la carpeta node modules al proyecto, ejecutar npm start
 - testear con postman, u otra herramienta de testeo de apis, accediendo a la ruta localhost:3001
