@@ -3,6 +3,7 @@ const express =  require('express')
 const routesTasks = require('./routes/rTask');
 const connectDB = require('./config/db');
 
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express();
 
@@ -14,7 +15,7 @@ require('dotenv').config();
 connectDB();
 const port =  process.env.PORT || 3001;
 
-app.use(express.static(__dirname + "/public"))
+app.use(cors());
 
 app.use('/tasks', routesTasks);
 
