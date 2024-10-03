@@ -8,6 +8,8 @@ const cTask = require('../controllers/cTask');
 
 router.get('/', cTask.getAll);
 
+router.get('/:id', cTask.getTask);
+
 router.put('/edit/:id', cTask.update)
 
 router.post('/add', cTask.create)

@@ -17,11 +17,35 @@ const cTask = {
     create: async(req, res) => {
         const body = req.body;
         if(body) {
-            await Task.create(body);
-            res.json({err: false, message: 'Tarea agregada'})
+            try {
+                await Task.create(body);
+                res.json({err: false, message: 'Tarea agregada'})
+            } catch (err) {
+                res.status(500).json({err:true, message: err.message + ` The value for field estado must be among these ones: En progreso, Pendiente, Completado`})
+            }
+
         } else {
             res.status(404).json({err:true, message: 'Falló crear tarea'})
         }
+    },
+
+    getTask: async (req, res) => {
+        const id = req.params.id;
+    
+        if (id) {
+            const taskDb = await Task.findById({_id:id})
+            if (taskDb) {
+                res.json({taskDb})
+            } else {
+                res.status(404).json({
+                    err: true,
+                    message: 'Tarea no encontrada'
+                })
+            }
+        } else {
+            res.status(404).json({err: true, message: 'Ingrese campo Id'})
+        }
+
     },
 
     update: async (req, res) => {
@@ -29,15 +53,19 @@ const cTask = {
         const id = req.params.id;
     
         if (id) {
-            const body = req.body
-            const taskDb = await Task.findByIdAndUpdate(
-                id, body, {useFindAndModify: false}
-            )
-    
-            res.json({
-                err: false,
-                message: 'Tarea editada'
-            })
+            try {
+                const body = req.body
+                const taskDb = await Task.findByIdAndUpdate(
+                    id, body, {useFindAndModify: false}
+                )
+        
+                res.json({
+                    err: false,
+                    message: 'Tarea editada'
+                })
+            } catch (err) {
+                res.status(500).json({err:true, message: err.message + ` The value for field estado must be among these ones: En progreso, Pendiente, Completado`})
+            }
         } else {
             res.status(404).json({err: true, message: 'Tarea no encontrada'})
         }
@@ -63,7 +91,7 @@ const cTask = {
         } else {
             res.status(404).json({
                 err: true,
-                message: 'Información errónea'
+                message: 'Ingrese campo id'
             })
         }
     }
