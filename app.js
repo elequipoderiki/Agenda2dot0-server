@@ -14,7 +14,7 @@ require('dotenv').config();
 
 connectDB();
 const port =  process.env.PORT || 3001;
-
+app.set('port', port)
 app.use(cors());
 
 app.use('/tasks', routesTasks);
