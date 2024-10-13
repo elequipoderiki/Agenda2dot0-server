@@ -37,7 +37,7 @@ const mUser = {
             }
 
         } catch(err) {
-            throw {message: err.message + `. Tal vez usuario no encontrado con este email ${email}`}
+            throw {message: err.message + `. Usuario no encontrado con este email ${email}`}
         }
 
     } , 

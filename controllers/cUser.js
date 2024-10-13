@@ -18,8 +18,8 @@ const cUser = {
         }
     },
     checkUserPassword: async (req, res) => {
-        const email = req.body.email;
-        const plainPassword = req.body.password
+        const email = req.params.email;
+        const plainPassword = req.params.password
         if (email && plainPassword) {
             try {
                 const isValid = await mUser.checkUserPassword(email, plainPassword)
