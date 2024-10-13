@@ -37,6 +37,10 @@ localhost:3001/tasks/\<id de tarea>
 > - tipo GET
 > - obtiene, si existe la tarea con ese id, los datos de la tarea.
 ----------------------
+localhost:3001/tasks/byuser/\<email de usuario>
+> - tipo GET
+> - obtiene, si existe el usuario con ese email, las tareas del usuario.
+----------------------
 localhost:3001/tasks/remove/\<id de tarea>
 > - tipo DELETE
 > - elimina, si existe la tarea con ese id, a la tarea.

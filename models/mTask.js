@@ -44,6 +44,17 @@ const mTask = {
         }
 
     } , 
+
+    getTasksByUser: async (user) => {
+        try {
+        const taskDb = await Task.find({usuario:user})
+            return taskDb
+        } catch(err) {
+            throw {message: err.message + 'Tareas no encontradas para el usuario suministrado'}
+        }
+
+    } , 
+
     update: async(id, body) => {
         try {
             const taskDb = await Task.findByIdAndUpdate(

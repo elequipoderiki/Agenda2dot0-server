@@ -10,6 +10,8 @@ router.get('/', cTask.getAll);
 
 router.get('/:id', cTask.getTask);
 
+router.get('/byuser/:user', cTask.getTasksByUser);
+
 router.put('/edit/:id', cTask.update)
 
 router.post('/add', cTask.create)

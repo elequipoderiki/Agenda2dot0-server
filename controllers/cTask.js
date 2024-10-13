@@ -52,6 +52,27 @@ const cTask = {
 
     },
 
+    getTasksByUser: async (req, res) => {
+        const user = req.params.user
+    
+        if (user) {
+            try {
+                const taskDb = await mTask.getTasksByUser(user)
+                res.json(taskDb)
+            } catch (err) {
+                // recurso no encontrado para este usuario (resource not found)
+                res.status(404).json({
+                    error: true,
+                    message: err.message
+                })
+            }
+        } else {
+            // falta el usuario (bad request)
+            res.status(400).json({error: true, message: 'Ingrese campo user'})
+        }
+
+    },
+
     update: async (req, res) => {
     
         const id = req.params.id;
