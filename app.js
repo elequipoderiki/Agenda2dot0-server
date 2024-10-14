@@ -7,6 +7,8 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express();
 
+const routesUser = require('./routes/rUser')
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -14,10 +16,12 @@ require('dotenv').config();
 
 connectDB();
 const port =  process.env.PORT || 3001;
-
+app.set('port', port)
 app.use(cors());
 
 app.use('/tasks', routesTasks);
+
+app.use('/users', routesUser)
 
 app.use(errorController)
 
